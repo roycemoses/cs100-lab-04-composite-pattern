@@ -62,57 +62,57 @@ TEST(AddTest, AddEvaluateLargeNegativeNumbers) {
 }
 
 TEST(SubTest, SubEvaluatePositive) {
-    OneThousandOpMock* value1 = new OneThousandOpMock();
-    SevenPointFiveOpMock* value2 = new SevenPointFiveOpMock();
+    Base* oneThousandOp = new Op(1000);
+    Base* sevenPointFiveOp = new Op(7.5);
 
-    Sub* sub = new Sub(value1->evaluate(), value2->evaluate());
+    Base* sub = new Sub(oneThousandOp, sevenPointFiveOp);
     EXPECT_EQ(sub->evaluate(), 992.5);
-    EXPECT_EQ(sub->stringify(), "992.500000");
+    EXPECT_EQ(sub->stringify(), "1000.000000 - 7.500000");
 }
 
 TEST(SubTest, SubEvaluateNegative) {
-    SevenPointFiveOpMock* value1 = new SevenPointFiveOpMock();
-    OneThousandOpMock* value2 = new OneThousandOpMock();
+    Base* sevenPointFiveOp = new Op(7.5);
+    Base* oneThousandOp = new Op(1000);
 
-    Sub* sub = new Sub(value1->evaluate(), value2->evaluate());
+    Base* sub = new Sub(sevenPointFiveOp, oneThousandOp);
     EXPECT_EQ(sub->evaluate(), -992.5);
-    EXPECT_EQ(sub->stringify(), "-992.500000");
+    EXPECT_EQ(sub->stringify(), "7.500000 - 1000.000000");
 }
 
 TEST(SubTest, SubEvaluateNumMinusZero) {
-    SevenPointFiveOpMock* value1 = new SevenPointFiveOpMock();
-    ZeroOpMock* value2 = new ZeroOpMock();
+    Base* sevenPointFiveOp = new Op(7.5);
+    Base* zeroOp = new Op(0);
 
-    Sub* sub = new Sub(value1->evaluate(), value2->evaluate());
+    Base* sub = new Sub(sevenPointFiveOp, zeroOp);
     EXPECT_EQ(sub->evaluate(), 7.5);
-    EXPECT_EQ(sub->stringify(), "7.500000");
+    EXPECT_EQ(sub->stringify(), "7.500000 - 0.000000");
 }
 
 TEST(SubTest, SubEvaluateZeroMinusNum) {
-    ZeroOpMock* value1 = new ZeroOpMock();
-    OneThousandOpMock* value2 = new OneThousandOpMock();
+    Base* zeroOp = new Op(0);
+    Base* oneThousandOp = new Op(1000);
 
-    Sub* sub = new Sub(value1->evaluate(), value2->evaluate());
+    Base* sub = new Sub(zeroOp, oneThousandOp);
     EXPECT_EQ(sub->evaluate(), -1000);
-    EXPECT_EQ(sub->stringify(), "-1000.000000");
+    EXPECT_EQ(sub->stringify(), "0.000000 - 1000.000000");
 }
 
 TEST(SubTest, SubEvaluateNegativeMinusNegative) {
-    NegativeOneThousandOpMock* value1 = new NegativeOneThousandOpMock();
-    NegativeSevenPointFiveOpMock* value2 = new NegativeSevenPointFiveOpMock();
+    Base* negativeOneThousandOp = new Op(-1000);
+    Base* negativeSevenPointFiveOp = new Op(-7.5);
 
-    Sub* sub = new Sub(value1->evaluate(), value2->evaluate());
+    Base* sub = new Sub(negativeOneThousandOp, negativeSevenPointFiveOp);
     EXPECT_EQ(sub->evaluate(), -992.5);
-    EXPECT_EQ(sub->stringify(), "-992.500000");
+    EXPECT_EQ(sub->stringify(), "-1000.000000 - -7.500000");
 }
 
 TEST(SubTest, SubEvaluateNegativeMinusPositive) {
-    NegativeOneThousandOpMock* value1 = new NegativeOneThousandOpMock();
-    OneThousandOpMock* value2 = new OneThousandOpMock();
+    Base* negativeOneThousandOp = new Op(-1000);
+    Base* oneThousandOp = new Op(1000);
 
-    Sub* sub = new Sub(value1->evaluate(), value2->evaluate());
+    Base* sub = new Sub(negativeOneThousandOp, oneThousandOp);
     EXPECT_EQ(sub->evaluate(), -2000);
-    EXPECT_EQ(sub->stringify(), "-2000.000000");
+    EXPECT_EQ(sub->stringify(), "-1000.000000 - 1000.000000");
 }
 
 #endif //__TEST_HPP__
