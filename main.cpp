@@ -1,6 +1,12 @@
 #include <iostream>
 
 #include "base.hpp"
+#include "op.hpp"
+#include "add.hpp"
+#include "sub.hpp"
+#include "mult.hpp"
+#include "div.hpp"
+#include "pow.hpp"
 
 int main() {
     // This is a very basic main, and being able to correctly execute this main
