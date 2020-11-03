@@ -6,6 +6,7 @@
 #include "op.hpp"
 #include "add.hpp"
 #include "sub.hpp"
+#include "mult.hpp"
 
 #include "div.hpp"
 
@@ -145,6 +146,57 @@ TEST(SubTest, SubEvaluateNegativeMinusPositive) {
     Base* sub = new Sub(negativeOneThousandOp, oneThousandOp);
     EXPECT_EQ(sub->evaluate(), -2000);
     EXPECT_EQ(sub->stringify(), "-1000.000000 - 1000.000000");
+}
+
+TEST(MultTest, MultEvaluatePositiveTimesPositive) {
+    Base* nineteenOp = new Op(19);
+    
+    Base* mult = new Mult(nineteenOp, nineteenOp);
+    EXPECT_EQ(mult->evaluate(), 361);
+    EXPECT_EQ(mult->stringify(), "19.000000 * 19.000000");
+}
+
+TEST(MultTest, MultEvaluatePositiveTimesNegative) {
+    Base* nineteenOp = new Op(19);
+    Base* negativeTwoOp = new Op(-2);
+    
+    Base* mult = new Mult(nineteenOp, negativeTwoOp);
+    EXPECT_EQ(mult->evaluate(), -38);
+    EXPECT_EQ(mult->stringify(), "19.000000 * -2.000000");
+}
+
+TEST(MultTest, MultEvaluateNegativeTimesNegative) {
+    Base* negativeNineteenOp = new Op(-19);
+    Base* negativeTwoOp = new Op(-2);
+    
+    Base* mult = new Mult(negativeNineteenOp, negativeTwoOp);
+    EXPECT_EQ(mult->evaluate(), 38);
+    EXPECT_EQ(mult->stringify(), "-19.000000 * -2.000000");
+}
+
+TEST(MultTest, MultEvaluateZeroTimesNum) {
+    Base* zeroOp = new Op(0);
+    Base* twoOp = new Op(2);
+    
+    Base* mult = new Mult(zeroOp, twoOp);
+    EXPECT_EQ(mult->evaluate(), 0);
+    EXPECT_EQ(mult->stringify(), "0.000000 * 2.000000");
+}
+
+TEST(MultTest, MultEvaluateZeroTimesZero) {
+    Base* zeroOp = new Op(0);
+    
+    Base* mult = new Mult(zeroOp, zeroOp);
+    EXPECT_EQ(mult->evaluate(), 0);
+    EXPECT_EQ(mult->stringify(), "0.000000 * 0.000000");
+}
+
+TEST(MultTest, MultEvaluateLargePositiveNum) {
+    Base* oneThousandOp = new Op(1000);
+    
+    Base* mult = new Mult(oneThousandOp, oneThousandOp);
+    EXPECT_EQ(mult->evaluate(), 1000000);
+    EXPECT_EQ(mult->stringify(), "1000.000000 * 1000.000000");
 }
 
 TEST(DivTest, DivEvaluatePositive) {

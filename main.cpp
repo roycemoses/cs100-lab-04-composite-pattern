@@ -2,10 +2,11 @@
 
 #include "base.hpp"
 #include "op.hpp"
-#include "add.hpp"
-#include "sub.hpp"
+#include "rand.hpp"
 #include "mult.hpp"
 #include "div.hpp"
+#include "add.hpp"
+#include "sub.hpp"
 #include "pow.hpp"
 
 int main() {
