@@ -22,6 +22,11 @@ TEST(OpTest, OpEvaluateNegative) {
     EXPECT_EQ(test->evaluate(), -8);
 }
 
+TEST(OpTest, OpEvaluateLargeNumber) {
+    Base* test = new Op(999.999);
+    EXPECT_EQ(test->evaluate(), 999.999);
+}
+
 TEST(AddTest, AddEvaluatePositive) {
     Base* SevenPointFiveOp = new Op(7.5);
 
