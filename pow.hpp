@@ -26,7 +26,7 @@ class Pow : public Base {
             }
             return result;
         }
-        virtual std::string stringify() { }
+        virtual std::string stringify() { return base->stringify() + std::string(" ** ") + power->stringify(); }
 };
 
 #endif // __POW_HPP__
