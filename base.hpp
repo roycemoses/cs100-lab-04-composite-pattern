@@ -16,6 +16,7 @@ class Base {
 
         /* Public Functions */
         double getValue() { return this->value; }
+        void setValue(double value) { this->value = value; }
 };
 
 #endif //__BASE_HPP__
