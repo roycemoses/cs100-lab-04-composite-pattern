@@ -8,9 +8,9 @@ class Sub : public Base {
         Base* value1;
         Base* value2;
     public:
-        Sub(Base* value1, Base* value2) : value1(value1), value2(value2), Base() { setValue(evaluate()); }
+        Sub(Base* value1, Base* value2) : value1(value1), value2(value2), Base() { this->setValue(evaluate()); }
         virtual double evaluate() { return value1->getValue() - value2->getValue(); }
-        virtual std::string stringify() { return std::to_string(value1->getValue()) + " - " + std::to_string(value2->getValue()); }
+        virtual std::string stringify() { return std::to_string(value1->getValue()) + std::string(" - ") + std::to_string(value2->getValue()); }
 };
 
 #endif // __SUB_HPP__
