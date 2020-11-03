@@ -268,6 +268,15 @@ TEST(SubTest, SubEvaluateNegativeDiv) {
     EXPECT_EQ(sub->stringify(), "-3.000000 - 33.000000 / -3.000000");
 }
 
+TEST(SubTest, SubEvaluatePow) {
+    Base* twoOp = new Op(2);
+    Base* fiveOp = new Op(5);
+
+    Base* pow = new Pow(twoOp, fiveOp);
+    Base* sub = new Sub(twoOp, pow);
+    EXPECT_EQ(sub->evaluate(), -30);
+    EXPECT_EQ(sub->stringify(), "2.000000 - 2.000000 ** 5.000000");
+}
 
 TEST(MultTest, MultEvaluatePositiveTimesPositive) {
     Base* nineteenOp = new Op(19);
