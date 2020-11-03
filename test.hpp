@@ -7,6 +7,8 @@
 #include "add.hpp"
 #include "sub.hpp"
 
+#include "div.hpp"
+
 TEST(OpTest, OpEvaluateNonZero) {
     Base* test = new Op(8);
     EXPECT_EQ(test->evaluate(), 8);
@@ -143,6 +145,15 @@ TEST(SubTest, SubEvaluateNegativeMinusPositive) {
     Base* sub = new Sub(negativeOneThousandOp, oneThousandOp);
     EXPECT_EQ(sub->evaluate(), -2000);
     EXPECT_EQ(sub->stringify(), "-1000.000000 - 1000.000000");
+}
+
+TEST(DivTest, DivEvaluatePositive) {
+    Base* nineOp = new Op(9);
+    Base* threeOp = new Op(3);
+
+    Base* div = new Div(nineOp, threeOp);
+    EXPECT_EQ(div->evaluate(), 3);
+    EXPECT_EQ(div->stringify(), "9.000000 / 3.000000");
 }
 
 #endif //__TEST_HPP__
