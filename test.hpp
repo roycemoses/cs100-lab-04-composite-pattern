@@ -134,6 +134,16 @@ TEST(AddTest, AddEvaluateNegativeMult) {
     EXPECT_EQ(add->stringify(), "7.000000 + 7.000000 * -8.000000");
 }
 
+TEST(AddTest, AddEvaluateDiv) {
+    Base* fortyFiveOp = new Op(45);
+    Base* fiveOp = new Op(5);
+
+    Base* div = new Div(fortyFiveOp, fiveOp);
+    Base* add = new Add(fiveOp, div);
+    EXPECT_EQ(add->evaluate(), 13);
+    EXPECT_EQ(add->stringify(), "5.000000 + 45.000000 / 5.000000");
+}
+
 TEST(SubTest, SubEvaluatePositive) {
     Base* oneThousandOp = new Op(1000);
     Base* sevenPointFiveOp = new Op(7.5);
