@@ -8,7 +8,7 @@ class Pow : public Base {
         Base* base;
         Base* power;
     public:
-        Pow(Base* base, Base* power) : base(base), power(power), Base() {  }
+        Pow(Base* base, Base* power) : base(base), power(power), Base() { this->setValue(evaluate()); }
         virtual double evaluate()
         {
             double result = 1;          // result starts at 1
