@@ -140,8 +140,18 @@ TEST(AddTest, AddEvaluateDiv) {
 
     Base* div = new Div(fortyFiveOp, fiveOp);
     Base* add = new Add(fiveOp, div);
-    EXPECT_EQ(add->evaluate(), 13);
+    EXPECT_EQ(add->evaluate(), 14);
     EXPECT_EQ(add->stringify(), "5.000000 + 45.000000 / 5.000000");
+}
+
+TEST(AddTest, AddEvaluateNegativeDiv) {
+    Base* fortyFiveOp = new Op(45);
+    Base* negativeFiveOp = new Op(-5);
+
+    Base* div = new Div(fortyFiveOp, negativeFiveOp);
+    Base* add = new Add(negativeFiveOp, div);
+    EXPECT_EQ(add->evaluate(), -14);
+    EXPECT_EQ(add->stringify(), "-5.000000 + 45.000000 / -5.000000");
 }
 
 TEST(SubTest, SubEvaluatePositive) {
