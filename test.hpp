@@ -6,6 +6,7 @@
 #include "op.hpp"
 #include "add.hpp"
 #include "sub.hpp"
+#include "mult.hpp"
 
 TEST(OpTest, OpEvaluateNonZero) {
     Base* test = new Op(8);
@@ -113,6 +114,14 @@ TEST(SubTest, SubEvaluateNegativeMinusPositive) {
     Base* sub = new Sub(negativeOneThousandOp, oneThousandOp);
     EXPECT_EQ(sub->evaluate(), -2000);
     EXPECT_EQ(sub->stringify(), "-1000.000000 - 1000.000000");
+}
+
+TEST(MultTest, MultEvaluatePositiveTimesPositive) {
+    Base* nineteenOp = new Op(19);
+    
+    Base* mult = new Mult(nineteenOp, nineteenOp);
+    EXPECT_EQ(mult->evaluate(), 361);
+    EXPECT_EQ(mult->stringify(), "19.000000 * 19.000000");
 }
 
 #endif //__TEST_HPP__
