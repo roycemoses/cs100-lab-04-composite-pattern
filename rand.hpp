@@ -5,7 +5,7 @@
 
 class Rand : public Base {
     public:
-        Rand() : Base() { }
+        Rand() : Base() { this->setValue(rand() % 100); }
 };
 
 #endif //__RAND_HPP__
