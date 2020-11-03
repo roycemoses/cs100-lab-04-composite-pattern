@@ -142,4 +142,13 @@ TEST(MultTest, MultEvaluateNegativeTimesNegative) {
     EXPECT_EQ(mult->stringify(), "-19.000000 * -2.000000");
 }
 
+TEST(MultTest, MultEvaluateZeroTimesNum) {
+    Base* zeroOp = new Op(0);
+    Base* twoOp = new Op(2);
+    
+    Base* mult = new Mult(zeroOp, twoOp);
+    EXPECT_EQ(mult->evaluate(), 0);
+    EXPECT_EQ(mult->stringify(), "0.000000 * 2.000000");
+}
+
 #endif //__TEST_HPP__
