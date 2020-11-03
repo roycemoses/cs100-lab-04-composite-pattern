@@ -159,4 +159,12 @@ TEST(MultTest, MultEvaluateZeroTimesZero) {
     EXPECT_EQ(mult->stringify(), "0.000000 * 0.000000");
 }
 
+TEST(MultTest, MultEvaluateLargePositiveNum) {
+    Base* oneThousandOp = new Op(1000);
+    
+    Base* mult = new Mult(oneThousandOp, oneThousandOp);
+    EXPECT_EQ(mult->evaluate(), 1000000);
+    EXPECT_EQ(mult->stringify(), "1000.000000 * 1000.000000");
+}
+
 #endif //__TEST_HPP__
