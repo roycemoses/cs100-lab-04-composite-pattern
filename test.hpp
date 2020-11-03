@@ -156,4 +156,13 @@ TEST(DivTest, DivEvaluatePositive) {
     EXPECT_EQ(div->stringify(), "9.000000 / 3.000000");
 }
 
+TEST(DivTest, DivEvaluateNegative) {
+    Base* negativeNineOp = new Op(-9);
+    Base* threeOp = new Op(3);
+
+    Base* div = new Div(negativeNineOp, threeOp);
+    EXPECT_EQ(div->evaluate(), -3);
+    EXPECT_EQ(div->stringify(), "-9.000000 / 3.000000");
+}
+
 #endif //__TEST_HPP__
