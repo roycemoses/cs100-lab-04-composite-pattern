@@ -8,9 +8,41 @@
 #include "sub.hpp"
 #include "mult.hpp"
 
+#include "div.hpp"
+
 TEST(OpTest, OpEvaluateNonZero) {
     Base* test = new Op(8);
     EXPECT_EQ(test->evaluate(), 8);
+}
+
+TEST(OpTest, OpEvaluateZero) {
+    Base* test = new Op(0);
+    EXPECT_EQ(test->evaluate(), 0);
+}
+
+TEST(OpTest, OpEvaluateNegative) {
+    Base* test = new Op(-8);
+    EXPECT_EQ(test->evaluate(), -8);
+}
+
+TEST(OpTest, OpEvaluateLargeNumber) {
+    Base* test = new Op(999.999);
+    EXPECT_EQ(test->evaluate(), 999.999);
+}
+
+TEST(OpTest, OpEvaluateNegativeLargeNumber) {
+    Base* test = new Op(-999.999);
+    EXPECT_EQ(test->evaluate(), -999.999);
+}
+
+TEST(OpTest, OpEvaluateSmallNumber) {
+    Base* test = new Op(0.0001);
+    EXPECT_EQ(test->evaluate(), 0.0001);
+}
+
+TEST(OpTest, OpEvaluateNegativeSmallNumber) {
+    Base* test = new Op(-0.0001);
+    EXPECT_EQ(test->evaluate(), -0.0001);
 }
 
 TEST(AddTest, AddEvaluatePositive) {
@@ -165,6 +197,15 @@ TEST(MultTest, MultEvaluateLargePositiveNum) {
     Base* mult = new Mult(oneThousandOp, oneThousandOp);
     EXPECT_EQ(mult->evaluate(), 1000000);
     EXPECT_EQ(mult->stringify(), "1000.000000 * 1000.000000");
+}
+
+TEST(DivTest, DivEvaluatePositive) {
+    Base* nineOp = new Op(9);
+    Base* threeOp = new Op(3);
+
+    Base* div = new Div(nineOp, threeOp);
+    EXPECT_EQ(div->evaluate(), 3);
+    EXPECT_EQ(div->stringify(), "9.000000 / 3.000000");
 }
 
 #endif //__TEST_HPP__
