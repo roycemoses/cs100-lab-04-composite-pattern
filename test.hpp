@@ -452,4 +452,15 @@ TEST(PowTest, PowEvaluatePow) {
     EXPECT_EQ(pow2->stringify(), "5.000000 ** 2.000000 ** 3.000000");
 }
 
+TEST(PowTest, PowEvaluateNegativePow) {
+    Base* twoOp = new Op(2);
+    Base* negativeThreeOp = new Op(-3);
+    Base* fiveOp = new Op(5);
+    
+    Base* pow1 = new Pow(twoOp, negativeThreeOp);
+    Base* pow2 = new Pow(fiveOp, pow1);
+    EXPECT_EQ(pow2->evaluate(), 1.22284);
+    EXPECT_EQ(pow2->stringify(), "5.000000 ** 2.000000 ** -3.000000");
+}
+
 #endif //__TEST_HPP__
