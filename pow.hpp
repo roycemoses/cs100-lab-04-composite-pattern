@@ -5,11 +5,11 @@
 
 class Pow : public Base {
     private:
-        Base* value1;
-        Base* value2;
+        Base* base;
+        Base* power;
     public:
-        Pow(Base* value1, Base* value2) : value1(value1), value2(value2), Base() {  }
-        virtual double evaluate() {  }
+        Pow(Base* base, Base* power) : base(base), power(power), Base() {  }
+        virtual double evaluate() { }
         virtual std::string stringify() { }
 };
 
