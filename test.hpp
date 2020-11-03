@@ -17,6 +17,11 @@ TEST(OpTest, OpEvaluateZero) {
     EXPECT_EQ(test->evaluate(), 0);
 }
 
+TEST(OpTest, OpEvaluateNegative) {
+    Base* test = new Op(-8);
+    EXPECT_EQ(test->evaluate(), -8);
+}
+
 TEST(AddTest, AddEvaluatePositive) {
     Base* SevenPointFiveOp = new Op(7.5);
 
