@@ -9,7 +9,7 @@ class Div : public Base {
         Base* value2;
     public:
         Div(Base* value1, Base* value2) : value1(value1), value2(value2), Base() { }
-        virtual double evaluate() { }
+        virtual double evaluate() { return value1->getValue() / value2->getValue(); }
         virtual std::string stringify() { }
 };
 
