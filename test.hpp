@@ -238,6 +238,16 @@ TEST(SubTest, SubEvaluateMult) {
     EXPECT_EQ(sub->stringify(), "5.000000 - 5.000000 * 8.000000");
 }
 
+TEST(SubTest, SubEvaluateNegativeMult) {
+    Base* fiveOp = new Op(5);
+    Base* negativeEightOp = new Op(-8);
+
+    Base* mult = new Mult(fiveOp, negativeEightOp);
+    Base* sub = new Sub(fiveOp, mult);
+    EXPECT_EQ(sub->evaluate(), 45);
+    EXPECT_EQ(sub->stringify(), "5.000000 - 5.000000 * -8.000000");
+}
+
 TEST(MultTest, MultEvaluatePositiveTimesPositive) {
     Base* nineteenOp = new Op(19);
     
