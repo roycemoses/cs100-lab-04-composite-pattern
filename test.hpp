@@ -7,8 +7,8 @@
 #include "add.hpp"
 #include "sub.hpp"
 #include "mult.hpp"
-
 #include "div.hpp"
+#include "pow.hpp"
 
 TEST(OpTest, OpEvaluateNonZero) {
     Base* test = new Op(8);
@@ -152,6 +152,16 @@ TEST(AddTest, AddEvaluateNegativeDiv) {
     Base* add = new Add(negativeFiveOp, div);
     EXPECT_EQ(add->evaluate(), -14);
     EXPECT_EQ(add->stringify(), "-5.000000 + 45.000000 / -5.000000");
+}
+
+TEST(AddTest, AddEvaluatePow) {
+    Base* twoOp = new Op(2);
+    Base* threeOp = new Op(3);
+
+    Base* pow = new Pow(twoOp, threeOp);
+    Base* add = new Add(threeOp, pow);
+    EXPECT_EQ(add->evaluate(), 11);
+    EXPECT_EQ(add->stringify(), "3.000000 + 2.000000 ** 3.000000");
 }
 
 TEST(SubTest, SubEvaluatePositive) {
