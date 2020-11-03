@@ -349,6 +349,15 @@ TEST(MultTest, MultEvaluateDiv) {
     EXPECT_EQ(mult->stringify(), "20.000000 * 20.000000 / 2.000000");
 }
 
+TEST(MultTest, MultEvaluateNegativeDiv) {
+    Base* twentyOp = new Op(20);
+    Base* negativeTwoOp = new Op(-2);
+    
+    Base* div = new Div(twentyOp, negativeTwoOp);
+    Base* mult = new Mult(twentyOp, div);
+    EXPECT_EQ(mult->evaluate(), -200);
+    EXPECT_EQ(mult->stringify(), "20.000000 * 20.000000 / -2.000000");
+}
 
 TEST(DivTest, DivEvaluatePositive) {
     Base* nineOp = new Op(9);
