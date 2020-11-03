@@ -430,4 +430,15 @@ TEST(DivTest, DivEvaluateDiv) {
     EXPECT_EQ(div2->stringify(), "5.000000 / 20.000000 / 2.000000");
 }
 
+TEST(DivTest, DivEvaluateNegativeDiv) {
+    Base* negativeTwoOp = new Op(-2);
+    Base* twentyOp = new Op(20);
+    Base* fiveOp = new Op(5);
+    
+    Base* div1 = new Div(twentyOp, negativeTwoOp);
+    Base* div2 = new Div(fiveOp, div1);
+    EXPECT_EQ(div2->evaluate(), -0.5);
+    EXPECT_EQ(div2->stringify(), "5.000000 / 20.000000 / -2.000000");
+}
+
 #endif //__TEST_HPP__
