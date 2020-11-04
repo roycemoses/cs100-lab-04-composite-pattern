@@ -628,6 +628,15 @@ TEST(PowTest, PowEvaluateNegativeRational) {
     EXPECT_EQ(pow->stringify(), "2.000000 ** -7.500000");
 }
 
+TEST(PowTest, PowEvaluateBetweenZeroAndOne) {
+    Base* fourOp = new Op(4);
+    Base* zeroPointFive = new Op(0.5);
+    
+    Base* pow = new Pow(fourOp, zeroPointFive);
+    EXPECT_EQ(pow->evaluate(), 2);
+    EXPECT_EQ(pow->stringify(), "4.000000 ** 0.500000");
+}
+
 TEST(PowTest, PowEvaluatePow) {
     Base* twoOp = new Op(2);
     Base* threeOp = new Op(3);
