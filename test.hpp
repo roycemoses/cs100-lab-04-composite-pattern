@@ -310,7 +310,18 @@ TEST(SubTest, SubEvaluateAdd)
     EXPECT_EQ(sub_and_add->evaluate(), 4);
     EXPECT_EQ(sub_and_add->stringify(), "10.000000 - 2.000000 - 2.000000 + 2.000000");    
 }
-// TEST(SubTest, SubEvaluateSub)
+TEST(SubTest, SubEvaluateSub)
+{
+    Base* tenOp = new Op(10);
+    Base* fourOp = new Op(4);
+    Base* twoOp = new Op(2);
+
+    Base* sub1 = new Sub(tenOp, fourOp);
+    Base* sub2 = new Sub(fourOp, twoOp);
+    Base* sub_and_sub = new Sub(sub1, sub2);
+    EXPECT_EQ(sub_and_sub->evaluate(), 4);
+    EXPECT_EQ(sub_and_sub->stringify(), "10.000000 - 4.000000 - 4.000000 - 2.000000");  
+}
 
 TEST(MultTest, MultEvaluatePositiveTimesPositive) {
     Base* nineteenOp = new Op(19);
