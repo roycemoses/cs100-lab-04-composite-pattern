@@ -566,9 +566,8 @@ TEST(PowTest, PowEvaluateNegativePow) {
     
     Base* pow1 = new Pow(twoOp, negativeThreeOp);
     Base* pow2 = new Pow(fiveOp, pow1);
-    EXPECT_EQ(pow2->evaluate(), 1.22284454499385184194);
+    EXPECT_NEAR(pow2->evaluate(), 1.22, 0.01);
     EXPECT_EQ(pow2->stringify(), "5.000000 ** 2.000000 ** -3.000000");
-    // this is returning 5 because we are using a custom loop. use cmath library for Pow?
 }
 
 // TEST(PowTest, PowEvaluateAdd)
