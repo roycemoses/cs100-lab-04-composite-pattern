@@ -580,7 +580,17 @@ TEST(PowTest, PowEvaluateAdd)
     EXPECT_EQ(pow_and_add->evaluate(), 256);
     EXPECT_EQ(pow_and_add->stringify(), "2.000000 ** 2.000000 ** 2.000000 + 2.000000");
 }
-// TEST(PowTest, PowEvaluateSub)
+TEST(PowTest, PowEvaluateSub)
+{
+    Base* twoOp = new Op(2);
+    Base* sixOp = new Op(6);
+    
+    Base* pow = new Pow(twoOp, twoOp);
+    Base* sub = new Sub(sixOp, twoOp);
+    Base* pow_and_sub = new Pow(pow, sub);
+    EXPECT_EQ(pow_and_sub->evaluate(), 256);
+    EXPECT_EQ(pow_and_sub->stringify(), "2.000000 ** 2.000000 ** 6.000000 - 2.000000");
+}
 // TEST(PowTest, PowEvaluateMult)
 // TEST(PowTest, PowEvaluateDiv)
 
