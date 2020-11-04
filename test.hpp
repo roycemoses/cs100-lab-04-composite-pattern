@@ -615,8 +615,17 @@ TEST(PowTest, PowEvaluateRational) {
     Base* sevenPointFiveOp = new Op(7.5);
     
     Base* pow = new Pow(twoOp, sevenPointFiveOp);
-    EXPECT_NEAR(pow->evaluate(), 181.019, 0.01);
+    EXPECT_NEAR(pow->evaluate(), 181.019, 0.001);
     EXPECT_EQ(pow->stringify(), "2.000000 ** 7.500000");
+}
+
+TEST(PowTest, PowEvaluateNegativeRational) {
+    Base* twoOp = new Op(2);
+    Base* negativeSevenPointFiveOp = new Op(-7.5);
+    
+    Base* pow = new Pow(twoOp, negativeSevenPointFiveOp);
+    EXPECT_NEAR(pow->evaluate(), 0.0055, 0.0001);
+    EXPECT_EQ(pow->stringify(), "2.000000 ** -7.500000");
 }
 
 TEST(PowTest, PowEvaluatePow) {
