@@ -310,6 +310,7 @@ TEST(SubTest, SubEvaluateAdd)
     EXPECT_EQ(sub_and_add->evaluate(), 4);
     EXPECT_EQ(sub_and_add->stringify(), "10.000000 - 2.000000 - 2.000000 + 2.000000");    
 }
+
 TEST(SubTest, SubEvaluateSub)
 {
     Base* tenOp = new Op(10);
@@ -436,7 +437,17 @@ TEST(MultTest, MultEvaluateSub)
     EXPECT_EQ(mult_and_sub->evaluate(), 32);
     EXPECT_EQ(mult_and_sub->stringify(), "2.000000 * 2.000000 * 10.000000 - 2.000000");
 }
-// TEST(MultTest, MultEvaluateMult)
+
+TEST(MultTest, MultEvaluateMult)
+{
+    Base* twoOp = new Op(2);
+
+    Base* mult1 = new Mult(twoOp, twoOp);
+    Base* mult2 = new Mult(twoOp, twoOp);
+    Base* mult_and_mult = new Mult(mult1, mult2);
+    EXPECT_EQ(mult_and_mult->evaluate(), 16);
+    EXPECT_EQ(mult_and_mult->stringify(), "2.000000 * 2.000000 * 2.000000 * 2.000000");
+}
 
 TEST(DivTest, DivEvaluatePositive) {
     Base* nineOp = new Op(9);
