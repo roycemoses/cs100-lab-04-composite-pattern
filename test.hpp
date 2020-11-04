@@ -174,6 +174,17 @@ TEST(AddTest, AddEvaluateNegativePow) {
     EXPECT_EQ(add->stringify(), "-3.000000 + 2.000000 ** -3.000000");
 }
 
+TEST(AddTest, AddEvaluateAdd)
+{
+    Base* twoOp = new Op(2);
+
+    Base* add1 = new Add(twoOp, twoOp);
+    Base* add2 = new Add(twoOp, twoOp);
+    Base* add_and_add = new Add(add1, add2);
+    EXPECT_EQ(add_and_add->evaluate(), 8);
+    EXPECT_EQ(add_and_add->stringify(), "2.000000 + 2.000000 + 2.000000 + 2.000000");
+}
+
 TEST(SubTest, SubEvaluatePositive) {
     Base* oneThousandOp = new Op(1000);
     Base* sevenPointFiveOp = new Op(7.5);
@@ -288,6 +299,9 @@ TEST(SubTest, SubEvaluateNegativePow) {
     EXPECT_EQ(sub->stringify(), "-2.000000 - -2.000000 ** 5.000000");
 }
 
+// TEST(SubTest, SubEvaluateAdd)
+// TEST(SubTest, SubEvaluateSub)
+
 TEST(MultTest, MultEvaluatePositiveTimesPositive) {
     Base* nineteenOp = new Op(19);
     
@@ -379,6 +393,10 @@ TEST(MultTest, MultEvaluateNegativePow) {
     EXPECT_EQ(mult->stringify(), "3.000000 * 3.000000 ** -4.000000");
 }
 
+// TEST(MultTest, MultEvaluateSub)
+// TEST(MultTest, MultEvaluateAdd)
+// TEST(MultTest, MultEvaluateMult)
+
 TEST(DivTest, DivEvaluatePositive) {
     Base* nineOp = new Op(9);
     Base* threeOp = new Op(3);
@@ -441,6 +459,10 @@ TEST(DivTest, DivEvaluateNegativeDiv) {
     EXPECT_EQ(div2->stringify(), "5.000000 / 20.000000 / -2.000000");
 }
 
+// TEST(DivTest, DivEvaluateAdd)
+// TEST(DivTest, DivEvaluateSub)
+// TEST(DivTest, DivEvaluateMult)
+
 TEST(PowTest, PowEvaluatePow) {
     Base* twoOp = new Op(2);
     Base* threeOp = new Op(3);
@@ -463,5 +485,10 @@ TEST(PowTest, PowEvaluateNegativePow) {
     EXPECT_EQ(pow2->stringify(), "5.000000 ** 2.000000 ** -3.000000");
     // this is returning 5 because we are using a custom loop. use cmath library for Pow?
 }
+
+// TEST(PowTest, PowEvaluateAdd)
+// TEST(PowTest, PowEvaluateSub)
+// TEST(PowTest, PowEvaluateMult)
+// TEST(PowTest, PowEvaluateDiv)
 
 #endif //__TEST_HPP__
