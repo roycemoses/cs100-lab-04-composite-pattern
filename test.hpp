@@ -580,6 +580,18 @@ TEST(DivTest, DivByZeroEvaluateDiv)
     EXPECT_EQ(div2->stringify(), "7.000000 / 0.000000 / 7.000000");
 }
 
+TEST(DivTest, DivEvaluateInfOverInf)
+{
+    Base* sevenOp = new Op(7);
+    Base* zeroOp = new Op(0);
+
+    Base* div = new Div(sevenOp, zeroOp);
+    Base* div2 = new Div(sevenOp, zeroOp);
+    Base* div3 = new Div(div, div2);
+    EXPECT_EQ(div2->evaluate(), INFINITY);
+    EXPECT_EQ(div3->stringify(), "7.000000 / 0.000000 / 7.000000 / 0.000000");
+}
+
 TEST(PowTest, PowEvaluatePow) {
     Base* twoOp = new Op(2);
     Base* threeOp = new Op(3);
