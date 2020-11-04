@@ -414,8 +414,28 @@ TEST(MultTest, MultEvaluateNegativePow) {
     EXPECT_EQ(mult->stringify(), "3.000000 * 3.000000 ** -4.000000");
 }
 
-// TEST(MultTest, MultEvaluateSub)
-// TEST(MultTest, MultEvaluateAdd)
+TEST(MultTest, MultEvaluateAdd)
+{
+    Base* twoOp = new Op(2);
+
+    Base* mult = new Mult(twoOp, twoOp);
+    Base* add = new Add(twoOp, twoOp);
+    Base* mult_and_add = new Mult(mult, add);
+    EXPECT_EQ(mult_and_add->evaluate(), 16);
+    EXPECT_EQ(mult_and_add->stringify(), "2.000000 * 2.000000 * 2.000000 + 2.000000");
+}
+
+TEST(MultTest, MultEvaluateSub)
+{
+    Base* tenOp = new Op(10);
+    Base* twoOp = new Op(2);
+
+    Base* mult = new Mult(twoOp, twoOp);
+    Base* sub = new Sub(tenOp, twoOp);
+    Base* mult_and_sub = new Mult(mult, sub);
+    EXPECT_EQ(mult_and_sub->evaluate(), 32);
+    EXPECT_EQ(mult_and_sub->stringify(), "2.000000 * 2.000000 * 10.000000 - 2.000000");
+}
 // TEST(MultTest, MultEvaluateMult)
 
 TEST(DivTest, DivEvaluatePositive) {
