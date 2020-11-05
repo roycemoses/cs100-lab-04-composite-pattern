@@ -9,6 +9,7 @@
 #include "mult.hpp"
 #include "div.hpp"
 #include "pow.hpp"
+#include "rand.hpp"
 
 TEST(OpTest, OpEvaluateNonZero) {
     Base* test = new Op(8);
@@ -712,6 +713,13 @@ TEST(PowTest, PowEvaluateDiv)
     Base* pow_and_div = new Pow(pow, div);
     EXPECT_EQ(pow_and_div->evaluate(), 16);
     EXPECT_EQ(pow_and_div->stringify(), "2.000000 ** 2.000000 ** 4.000000 / 2.000000");    
+}
+
+TEST(RandTest, RandLessThanOneHundredTest)
+{
+    Base* rand = new Rand();
+
+    EXPECT_LT(rand->evaluate(), 100);
 }
 
 #endif //__TEST_HPP__
